@@ -42,6 +42,7 @@ def install_vim
       ./configure --prefix=/tmp/vim &&
       make &&
       make install &&
+      cd .. &&
       tar cfz #{cache_path} vim
     }
   end
