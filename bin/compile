@@ -34,9 +34,10 @@ def install_vim
     puts "-----> Compiling vim"
     run %{
       cd /tmp &&
-      wget ftp://ftp.vim.org/pub/vim/unix/vim-#{$vim_version}.tar.bz2 &&
+      curl -s ftp://ftp.vim.org/pub/vim/unix/vim-#{$vim_version}.tar.bz2 > vim-#{$vim_version}.tar.bz2 &&
       echo "#{$vim_sha}  vim-#{$vim_version}.tar.bz2" | sha256sum -c &&
-      tar xvfj vim-#{$vim_version}.tar.bz2 -C vim-source --strip-components 1 &&
+      mkdir vim-source &&
+      tar xfj vim-#{$vim_version}.tar.bz2 -C vim-source --strip-components 1 &&
       cd vim-source &&
       ./configure --prefix=/tmp/vim &&
       make &&
