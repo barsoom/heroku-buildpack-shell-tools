@@ -52,7 +52,7 @@ end
 
 def install(name, cache_path)
   puts "-----> Installing #{name}"
-  run "cd #{build_dir}/vendor && tar xfz #{cache_path}"
+  run "cd #{$build_dir}/vendor && tar xfvz #{cache_path}"
 end
 
 main
