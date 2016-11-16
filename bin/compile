@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+build_dir = ARGV[0]
+cache_dir = ARGV[1]
+env_dir = ARGV[2]
+
+vim_version = "7.4"
+vim_sha = "d0f5a6d2c439f02d97fa21bd9121f4c5abb1f6cd8b5a79d3ca82867495734ade"
+
+profile_path="#{build_dir}/.profile.d/shell-tools.sh"
+
+File.write(profile_path, %{
+export PATH=/app/vendor/vim-#{version}/bin:$PATH
+})
+
+# If you want ENV loaded in the build script, uncomment this:
+#Dir.entries(env_dir).each do |file_name|
+#  next if file_name.include?(".")
+#
+#  ENV[file_name] = File.read("#{env_dir}/#{file_name}").chomp
+#end
+
+def run(command)
+  system(command) || exit(1)
+end
+
+def main
+  install_vim
+end
+
+def install_vim
+  cache_path = "#{cache_dir}/vim-#{verison}.tar.gz"
+  unless File.exists?(cache_path)
+    puts "-----> Compiling vim"
+    run %{
+      cd /tmp &&
+      wget ftp://ftp.vim.org/pub/vim/unix/vim-#{version}.tar.bz2 &&
+      echo "#{vim_sha}  vim-#{version}.tar.bz2" | sha256sum -c &&
+      tar xvfj vim-#{version}.tar.bz2 &&
+      cd vim-#{version} &&
+      ./configure --prefix=/tmp/vim &&
+      make &&
+      make install &&
+      tar cfz #{cache_path} /tmp/vim
+    }
+  end
+
+  install cache_path
+end
+
+def install(name, cache_path)
+  puts "-----> Installing #{name}"
+  run "cd /app/vendor && tar xfz #{cache_path}"
+end
+
+main
