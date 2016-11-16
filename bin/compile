@@ -46,7 +46,7 @@ def install_vim
     }
   end
 
-  install cache_path
+  install "vim", cache_path
 end
 
 def install(name, cache_path)
