@@ -10,7 +10,7 @@ $vim_sha = "d0f5a6d2c439f02d97fa21bd9121f4c5abb1f6cd8b5a79d3ca82867495734ade"
 profile_path="#{$build_dir}/.profile.d/shell-tools.sh"
 
 File.write(profile_path, %{
-export PATH=/app/vendor/vim-#{$vim_version}/bin:$PATH
+export PATH=/app/vendor/vim/bin:$PATH
 })
 
 # If you want ENV loaded in the build script, uncomment this:
@@ -52,7 +52,7 @@ end
 
 def install(name, cache_path)
   puts "-----> Installing #{name}"
-  run "cd /app/vendor && tar xfvz #{cache_path}"
+  run "cd #{build_dir}/vendor && tar xfz #{cache_path}"
 end
 
 main
