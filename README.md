@@ -4,7 +4,7 @@ This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) th
 
 # Licence:
 
-Copyright (c) 2015 Auctionet.com (Auction Network Sweden AB)
+Copyright (c) 2016 Auctionet.com (Auction Network Sweden AB)
 
 MIT License
 
