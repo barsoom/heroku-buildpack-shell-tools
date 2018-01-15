@@ -7,8 +7,10 @@ $env_dir = ARGV[2]
 $vim_version = "7.4"
 $vim_sha = "d0f5a6d2c439f02d97fa21bd9121f4c5abb1f6cd8b5a79d3ca82867495734ade"
 
-profile_path="#{$build_dir}/.profile.d/shell-tools.sh"
+profile_d_path = "#{$build_dir}/.profile.d"
+profile_path="#{profile_d_path}/shell-tools.sh"
 
+FileUtils.mkdir_p(profile_d_path)
 File.write(profile_path, %{
 export PATH=/app/vendor/vim/bin:$PATH
 })
