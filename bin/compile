@@ -33,7 +33,7 @@ def main
 end
 
 def install_vim
-  cache_path = "#{$cache_dir}/vim-#{$vim_verison}.tar.gz"
+  cache_path = "#{$cache_dir}/vim-#{$vim_version}.tar.gz"
   unless File.exists?(cache_path)
     puts "-----> Compiling vim"
     run %{
