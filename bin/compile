@@ -13,6 +13,8 @@ profile_d_path = "#{$build_dir}/.profile.d"
 profile_path="#{profile_d_path}/shell-tools.sh"
 
 FileUtils.mkdir_p(profile_d_path)
+FileUtils.mkdir_p($cache_dir)
+
 File.write(profile_path, %{
 export PATH=/app/vendor/vim/bin:$PATH
 })
