@@ -47,7 +47,24 @@ def install_vim
       mkdir vim-source &&
       tar xfj vim-#{$vim_version}.tar.bz2 -C vim-source --strip-components 1 &&
       cd vim-source &&
-      ./configure --enable-gui=no --prefix=/tmp/vim &&
+      # Options from an example of how to build a static vim. We don't need that,
+      # but we do want a vim that does not depend on X11, etc.
+      #
+      # Copied from https://github.com/ericpruitt/static-glibc-vim/blob/master/Makefile
+      ./configure --disable-channel \
+                --disable-gpm \
+                --disable-gtktest \
+                --disable-gui \
+                --disable-netbeans \
+                --disable-nls \
+                --disable-selinux \
+                --disable-smack \
+                --disable-sysmouse \
+                --disable-xsmp \
+                --enable-multibyte \
+                --with-features=normal \
+                --without-x \
+                --prefix=/tmp/vim &&
       make &&
       make install &&
       cd .. &&
