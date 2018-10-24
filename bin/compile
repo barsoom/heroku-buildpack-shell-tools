@@ -37,6 +37,9 @@ end
 def install_vim
   cache_path = "#{$cache_dir}/vim-#{$vim_version}.tar.gz"
   unless File.exists?(cache_path)
+    puts "-----> Installing deps"
+    run "apt-get install -y libsm-dev"
+
     puts "-----> Compiling vim"
     run %{
       cd /tmp &&
