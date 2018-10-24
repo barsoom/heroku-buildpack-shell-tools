@@ -35,7 +35,9 @@ def main
 end
 
 def install_vim
-  cache_path = "#{$cache_dir}/vim-#{$vim_version}.tar.gz"
+  script_version = 2 # Added some deps
+
+  cache_path = "#{$cache_dir}/vim-#{$vim_version}-#{script_version}.tar.gz"
   unless File.exists?(cache_path)
     puts "-----> Installing deps"
     run "apt-get install -y libsm-dev libsm6"
