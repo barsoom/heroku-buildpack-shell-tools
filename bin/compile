@@ -35,7 +35,7 @@ def main
 end
 
 def install_vim
-  script_version = 2 # Added some deps
+  script_version = 3 # Change this if you change the build script to invalidate caches.
 
   cache_path = "#{$cache_dir}/vim-#{$vim_version}-#{script_version}.tar.gz"
   unless File.exists?(cache_path)
