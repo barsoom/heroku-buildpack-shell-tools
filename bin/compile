@@ -38,7 +38,7 @@ def install_vim
   script_version = 3 # Change this if you change the build script to invalidate caches.
 
   cache_path = "#{$cache_dir}/vim-#{$vim_version}-#{script_version}.tar.gz"
-  unless File.exists?(cache_path)
+  unless File.exist?(cache_path)
     puts "-----> Compiling vim"
     run %{
       cd /tmp &&
